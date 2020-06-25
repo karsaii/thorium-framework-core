@@ -12,8 +12,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
         <!--Dependency Versions-->
-        <selenium.version>3.12.0</selenium.version>
-        <driver-binary-downloader-maven-plugin.version>1.0.17</driver-binary-downloader-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
         <eclipse-collections.version>10.2.0</eclipse-collections.version>
@@ -23,22 +21,6 @@
         <sikuli.version>2.0.4</sikuli.version>
         <jackson.version>2.11.0</jackson.version>
         <junit.jupiter.version>5.1.0</junit.jupiter.version>
-        <!-- Test Settings for com.github.karsaii.framework.selenium plugin -->
-        <overwrite.binaries>false</overwrite.binaries>
-        <read.timeout>30000</read.timeout>
-        <connection.timeout>40000</connection.timeout>
-        <retry.attempts>4</retry.attempts>
-        <browser>firefox</browser>
-        <threads>1</threads>
-        <remote>false</remote>
-        <headless>true</headless>
-        <seleniumGridURL/>
-        <platform/>
-        <browserVersion/>
-        <proxyEnabled>false</proxyEnabled>
-        <proxyHost/>
-        <proxyPort/>
-
     </properties>
     <repositories>
         <repository>
@@ -62,11 +44,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -119,68 +96,6 @@
                             <source>${java.version}</source>
                             <target>${java.version}</target>
                         </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.lazerycode.selenium</groupId>
-                        <artifactId>driver-binary-downloader-maven-plugin</artifactId>
-                        <version>${driver-binary-downloader-maven-plugin.version}</version>
-                        <configuration>
-                            <rootStandaloneServerDirectory>${project.basedir}/src/test/resources/selenium_standalone_binaries</rootStandaloneServerDirectory>
-                            <downloadedZipFileDirectory>${project.basedir}/src/test/resources/selenium_standalone_zips</downloadedZipFileDirectory>
-                            <customRepositoryMap>${project.basedir}/src/test/resources/RepositoryMap.xml</customRepositoryMap>
-                            <overwriteFilesThatExist>${overwrite.binaries}</overwriteFilesThatExist>
-                            <onlyGetDriversForHostOperatingSystem>false</onlyGetDriversForHostOperatingSystem>
-                            <fileDownloadRetryAttempts>${retry.attempts}</fileDownloadRetryAttempts>
-                            <fileDownloadReadTimeout>${read.timeout}</fileDownloadReadTimeout>
-                            <operatingSystems>
-                                <windows>true</windows>
-                                <linux>true</linux>
-                                <mac>true</mac>
-                            </operatingSystems>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>selenium</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <configuration>
-                            <parallel>methods</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemPropertyVariables>
-                                <browser>${browser}</browser>
-                                <screenshotDirectory>${project.build.directory}/screenshots</screenshotDirectory>
-                                <remoteDriver>${remote}</remoteDriver>
-                                <gridURL>${seleniumGridURL}</gridURL>
-                                <desiredPlatform>${platform}</desiredPlatform>
-                                <desiredBrowserVersion>${browserVersion}</desiredBrowserVersion>
-                                <proxyEnabled>${proxyEnabled}</proxyEnabled>
-                                <proxyHost>${proxyHost}</proxyHost>
-                                <proxyPort>${proxyPort}</proxyPort>
-                                <headless>${headless}</headless>
-
-                                <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                                <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
-                                <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
-                                <webdriver.gecko.driver>${webdriver.gecko.driver}</webdriver.gecko.driver>
-                                <webdriver.edge.driver>${webdriver.edge.driver}</webdriver.edge.driver>
-                            </systemPropertyVariables>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <!--This goal makes the build fail if you have test failures-->
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
