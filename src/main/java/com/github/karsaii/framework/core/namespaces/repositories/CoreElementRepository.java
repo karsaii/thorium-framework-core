@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.Set;
 
 public interface CoreElementRepository {
-    static <T extends Enum<?>, U> Map<String, DecoratedList<SelectorKeySpecificityData>> getInitializedTypeKeysMap(Set<T> typesSet, Class<T> clazz) {
+    static <T extends String, U> Map<String, DecoratedList<SelectorKeySpecificityData>> getInitializedTypeKeysMap(Set<T> typesSet, Class<T> clazz) {
         final var typeKeys = Collections.synchronizedMap(new LinkedHashMap<String, DecoratedList<SelectorKeySpecificityData>>());
         final var types = DecoratedListFactory.getWith(typesSet, clazz);
         for (var type : types) {
-            typeKeys.put(type.name(), DecoratedListFactory.getWithDefaults());
+            typeKeys.put(type, DecoratedListFactory.getWithDefaults());
         }
 
         return typeKeys;
