@@ -93,7 +93,7 @@ public interface FrameworkCoreFormatter {
         if (isBlank(message)) {
             var index = 0;
             for(T parameters : data) {
-                sb.append(CoreFormatter.isInvalidMessage(validator.test(parameters), index + ". element data"));
+                sb.append(CoreFormatter.isInvalidMessage(!validator.test(parameters), index + ". element data"));
             }
         }
 
@@ -180,7 +180,7 @@ public interface FrameworkCoreFormatter {
     }
 
     static String getElementsAmountMessage(String locator, boolean status, int expectedSize, int size) {
-        return (status ? expectedSize : (size > 0 ? "Wrong(" + expectedSize + ") amount of" : "No")) + " elements found by: " + locator.toString() + CoreFormatterConstants.END_LINE;
+        return (status ? expectedSize : (size > 0 ? "Wrong(" + expectedSize + ") amount of" : "No")) + " elements found by: " + locator + CoreFormatterConstants.END_LINE;
     }
 
     static <T> String isInvalidLocatorMessage(String locator, Function<String, T> locatorGetter) {
@@ -222,9 +222,9 @@ public interface FrameworkCoreFormatter {
     }
 
     static String getProbabilityAdjustmentMessage(String key, double original, double adjusted, boolean increase, boolean generated, boolean belowThreshold) {
-        var message = (increase ? "Increased" : "Reduced") + " probability of com.github.karsaii.framework.core.selector(\"" + original + "\") to \"" + adjusted + "\"" + CoreFormatterConstants.END_LINE;
+        var message = (increase ? "Increased" : "Reduced") + " probability of selector(\"" + original + "\") to \"" + adjusted + "\"" + CoreFormatterConstants.END_LINE;
         if (belowThreshold) {
-            message += (generated ? "External" : "Regular") + "com.github.karsaii.framework.core.selector by key(\"" + key + "\") is below threshold(\"" + adjusted + "\"), set to \"0.0\"" + CoreFormatterConstants.END_LINE;
+            message += (generated ? "External" : "Regular") + "selector by key(\"" + key + "\") is below threshold(\"" + adjusted + "\"), set to \"0.0\"" + CoreFormatterConstants.END_LINE;
         }
 
         return message;

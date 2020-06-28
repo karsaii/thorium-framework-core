@@ -1,7 +1,7 @@
 package com.github.karsaii.framework.core.abstracts.lazy.filtered;
 
 import com.github.karsaii.core.records.Data;
-import com.github.karsaii.framework.core.records.element.finder.BaseFilterParameters;
+import com.github.karsaii.framework.core.abstracts.element.finder.BaseFilterParameters;
 
 import java.util.Objects;
 import java.util.function.Function;
