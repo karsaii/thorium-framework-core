@@ -93,7 +93,7 @@ public interface FrameworkCoreFormatter {
         if (isBlank(message)) {
             var index = 0;
             for(T parameters : data) {
-                sb.append(CoreFormatter.isInvalidMessage(!validator.test(parameters), index + ". element data"));
+                sb.append(CoreFormatter.isInvalidMessage(validator.test(parameters), index + ". element data"));
             }
         }
 
