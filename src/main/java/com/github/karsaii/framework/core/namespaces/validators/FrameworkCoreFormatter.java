@@ -141,7 +141,7 @@ public interface FrameworkCoreFormatter {
         }
 
         if (isBlank(message)) {
-            message += CoreFormatter.isNullOrEmptyListMessage(list, "List");
+            message += CoreFormatter.isNullOrEmptyListMessageWithName(list, "List");
         }
 
         return CoreFormatter.getNamedErrorMessageOrEmpty(nameof, message);
