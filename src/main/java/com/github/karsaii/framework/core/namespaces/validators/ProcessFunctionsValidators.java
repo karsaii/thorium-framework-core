@@ -1,6 +1,6 @@
 package com.github.karsaii.framework.core.namespaces.validators;
 
-import com.github.karsaii.core.extensions.namespaces.predicates.BasicPredicateFunctions;
+import com.github.karsaii.core.extensions.namespaces.predicates.BasicPredicates;
 import com.github.karsaii.core.extensions.namespaces.validators.FileUtilitiesValidators;
 import com.github.karsaii.framework.core.records.ApplicationData;
 
@@ -26,7 +26,7 @@ public interface ProcessFunctionsValidators {
         if (isBlank(message)) {
             final var arguments = data.arguments;
             message += FileUtilitiesValidators.isExistingMessage(data.path);
-            if (BasicPredicateFunctions.isPositiveNonZero(arguments.length())) {
+            if (BasicPredicates.isPositiveNonZero(arguments.length())) {
                 message += isBlankMessageWithName(arguments, "Arguments");
             }
         }

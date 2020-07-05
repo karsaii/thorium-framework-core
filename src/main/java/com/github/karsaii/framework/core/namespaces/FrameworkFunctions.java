@@ -5,7 +5,7 @@ import com.github.karsaii.core.extensions.DecoratedList;
 import com.github.karsaii.core.extensions.boilers.StringSet;
 import com.github.karsaii.core.extensions.interfaces.ISizable;
 import com.github.karsaii.core.extensions.interfaces.functional.TriFunction;
-import com.github.karsaii.core.extensions.namespaces.predicates.BasicPredicateFunctions;
+import com.github.karsaii.core.extensions.namespaces.predicates.BasicPredicates;
 import com.github.karsaii.core.namespaces.DataFactoryFunctions;
 import com.github.karsaii.core.records.Data;
 import com.github.karsaii.framework.core.namespaces.validators.FrameworkCoreFormatter;
@@ -36,11 +36,11 @@ public interface FrameworkFunctions {
     }
 
     static <T extends ISizable> Data<Integer> getCountOfElements(Data<T> data, String elementName) {
-        return getAmount("getCountOfElements", data, FrameworkCoreFormatter::getCountOfTypeMessage, BasicPredicateFunctions::isNonNegative, elementName);
+        return getAmount("getCountOfElements", data, FrameworkCoreFormatter::getCountOfTypeMessage, BasicPredicates::isNonNegative, elementName);
     }
 
     static <T extends ISizable> Data<Integer> getWindowHandleAmount(Data<T> data, String elementName) {
-        return getAmount("getWindowHandleAmount", data, FrameworkCoreFormatter::getCountOfTypeMessage, BasicPredicateFunctions::isPositiveNonZero, elementName);
+        return getAmount("getWindowHandleAmount", data, FrameworkCoreFormatter::getCountOfTypeMessage, BasicPredicates::isPositiveNonZero, elementName);
     }
 
     static <T> Function<Data<DecoratedList<?>>, Data<Integer>> getCountOfElements(String elementName) {
