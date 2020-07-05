@@ -1,7 +1,7 @@
 package com.github.karsaii.framework.core.namespaces;
 
 import com.github.karsaii.core.namespaces.DataFactoryFunctions;
-import com.github.karsaii.core.namespaces.validators.DataValidators;
+import com.github.karsaii.core.namespaces.predicates.DataPredicates;
 import com.github.karsaii.core.records.Data;
 import com.github.karsaii.framework.core.constants.ProcessConstants;
 import com.github.karsaii.framework.core.namespaces.validators.FrameworkCoreFormatter;
@@ -53,7 +53,7 @@ public interface ProcessFunctions {
         }
 
         final var builderData = getBuilder(data);
-        if (DataValidators.isInvalidOrFalse(builderData)) {
+        if (DataPredicates.isInvalidOrFalse(builderData)) {
             return builderData;
         }
 

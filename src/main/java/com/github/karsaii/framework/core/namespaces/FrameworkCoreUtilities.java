@@ -3,6 +3,7 @@ package com.github.karsaii.framework.core.namespaces;
 import com.github.karsaii.core.extensions.DecoratedList;
 import com.github.karsaii.core.extensions.namespaces.EmptiableFunctions;
 import com.github.karsaii.core.extensions.namespaces.factories.DecoratedListFactory;
+import com.github.karsaii.framework.core.abstracts.AbstractLazyResult;
 import com.github.karsaii.framework.core.constants.lazy.LazyLocatorConstants;
 import com.github.karsaii.framework.core.namespaces.extensions.boilers.LazyLocatorList;
 import com.github.karsaii.framework.core.records.lazy.LazyLocator;
@@ -17,6 +18,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static com.github.karsaii.core.extensions.namespaces.CoreUtilities.areAll;
+import static com.github.karsaii.core.extensions.namespaces.CoreUtilities.areAnyNull;
 import static com.github.karsaii.core.extensions.namespaces.NullableFunctions.isNull;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
