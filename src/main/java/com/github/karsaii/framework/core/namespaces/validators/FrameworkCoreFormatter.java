@@ -9,6 +9,7 @@ import com.github.karsaii.core.records.Data;
 import com.github.karsaii.framework.core.abstracts.AbstractLazyResult;
 import com.github.karsaii.framework.core.abstracts.AbstractLazyElementWithOptionsData;
 import com.github.karsaii.framework.core.constants.FrameworkCoreFormatterConstants;
+import com.github.karsaii.framework.core.records.GetByFilterFormatterData;
 import com.github.karsaii.framework.core.records.InternalSelectorData;
 import com.github.karsaii.framework.core.records.ProbabilityData;
 import com.github.karsaii.framework.core.records.lazy.ExternalSelectorData;
@@ -20,6 +21,11 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.getNamedErrorMessageOrEmpty;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isBlankMessageWithName;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isLessThanExpected;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isMoreThanExpected;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessage;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessageWithName;
 import static com.github.karsaii.core.namespaces.validators.DataValidators.isInvalidOrFalseMessage;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -166,5 +172,32 @@ public interface FrameworkCoreFormatter {
         final var pathFragment = "Path: " + path + CoreFormatterConstants.COLON_NEWLINE;
         final var argumentFragment = "Arguments: " + arguments + CoreFormatterConstants.END_LINE;
         return nameFragment + pathFragment + argumentFragment;
+    }
+
+    static <T> String getInvalidGetByFilterFormatterDataMessage(GetByFilterFormatterData<T> data) {
+        var message = isNullMessageWithName(data, "Get By filter data");
+        if (isBlank(message)) {
+            message += (
+                isBlankMessageWithName(data.filterName, "Filter name") +
+                isBlankMessageWithName(data.message, "Message") +
+                isNullMessageWithName(data.filter, "Filter") +
+                isNullMessage(data.status)
+            );
+
+            final var listSize = data.listSize;
+            final var sizeData = isLessThanExpected(listSize, -1, "List size");
+            if (!sizeData.status) {
+                message += "List size wasn't more than -1 - size(\"" + listSize + "\")" + CoreFormatterConstants.END_LINE;
+            }
+        }
+
+        return getNamedErrorMessageOrEmpty("getInvalidGetByFilterFormatterDataMessage: ", message);
+    }
+
+    static <T> String getByFilterMessage(GetByFilterFormatterData<T> data) {
+        var message = getInvalidGetByFilterFormatterDataMessage(data);
+        return isBlank(message) ? (
+            data.filterName + " was" + (data.status ? "" : "n't") + " found by " + data.filterName + "(\"" + data.filter + "\"), list size: " + data.listSize + CoreFormatterConstants.END_LINE + message
+        ) : message;
     }
 }
