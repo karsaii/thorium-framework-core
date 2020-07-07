@@ -31,6 +31,6 @@ public interface ProcessFunctionsValidators {
             }
         }
 
-        return getNamedErrorMessageOrEmpty("isValidGetBuilderParameters: ", message);
+        return getNamedErrorMessageOrEmpty("isValidGetBuilderParameters", message);
     }
 }
