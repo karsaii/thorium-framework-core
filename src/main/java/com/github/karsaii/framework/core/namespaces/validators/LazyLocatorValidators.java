@@ -16,7 +16,7 @@ public interface LazyLocatorValidators {
             );
         }
 
-        return getNamedErrorMessageOrEmpty("isInvalidLazyLocatorCommon: ", message);
+        return getNamedErrorMessageOrEmpty("isInvalidLazyLocatorCommon", message);
     }
 
     static String isInvalidLazyLocator(LazyLocator data) {
@@ -25,6 +25,6 @@ public interface LazyLocatorValidators {
             message += CoreFormatter.isBlankMessageWithName(data.strategy, "Lazy Locator strategy value");
         }
 
-        return getNamedErrorMessageOrEmpty("isInvalidLazyLocator: ", message);
+        return getNamedErrorMessageOrEmpty("isInvalidLazyLocator", message);
     }
 }

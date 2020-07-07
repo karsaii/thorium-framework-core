@@ -37,7 +37,7 @@ public interface FrameworkCoreFormatter {
 
     static <T> String getLazyParameterErrorMessage(AbstractLazyResult<T> element, String nameof) {
         var message = isNullLazyElementMessage(element) + CoreFormatter.isBlankMessageWithName(nameof, "Name of the function");
-        return getNamedErrorMessageOrEmpty("getLazyParameterErrorMessage: ", message);
+        return getNamedErrorMessageOrEmpty("getLazyParameterErrorMessage", message);
     }
 
     static String getInternalSelectorDataMessage(InternalSelectorData internalData) {
@@ -46,7 +46,7 @@ public interface FrameworkCoreFormatter {
             message += CoreFormatter.getCommandAmountRangeErrorMessage(internalData.limit, internalData.range);
         }
 
-        return getNamedErrorMessageOrEmpty("getInternalSelectorDataMessage: ", message);
+        return getNamedErrorMessageOrEmpty("getInternalSelectorDataMessage", message);
     }
 
     static <T> String getExternalSelectorDataMessage(ExternalSelectorData<T> object) {
@@ -60,12 +60,12 @@ public interface FrameworkCoreFormatter {
                 CoreFormatter.isNullMessageWithName(object.defaultSelector, "Default Selector value")
             );
         }
-        return getNamedErrorMessageOrEmpty("getExternalSelectorDataMessage: ", message);
+        return getNamedErrorMessageOrEmpty("getExternalSelectorDataMessage", message);
     }
 
     static <T, U> String getExternalSelectorDataErrorMessage(AbstractLazyResult<T> element, ExternalSelectorData<U> externalData, String nameof) {
         return getNamedErrorMessageOrEmpty(
-            "getExternalSelectorDataErrorMessage: ",
+            "getExternalSelectorDataErrorMessage",
             (
                 CoreFormatter.isBlankMessageWithName(nameof, "Name of the function") +
                 getLazyParameterErrorMessage(element, nameof) +
@@ -87,11 +87,11 @@ public interface FrameworkCoreFormatter {
             }
         }
 
-        return getNamedErrorMessageOrEmpty("isNullLazyElementMessage: ", message);
+        return getNamedErrorMessageOrEmpty("isNullLazyElementMessage", message);
     }
 
     static <T> String getAmountParameterErrorMessage(Data<T> sizable, TriFunction<Boolean, Integer, String, String> messageHandler, Predicate<Integer> condition) {
-        return getNamedErrorMessageOrEmpty("getAmountParameterErrorMessage: ", (
+        return getNamedErrorMessageOrEmpty("getAmountParameterErrorMessage", (
             isInvalidOrFalseMessage(sizable) +
             CoreFormatter.isNullMessageWithName(messageHandler, "Message Handler") +
             CoreFormatter.isNullMessageWithName(condition, "Condition")
@@ -99,7 +99,7 @@ public interface FrameworkCoreFormatter {
     }
 
     static <T> String getLazyResultWithExternalMessage(String nameof, AbstractLazyResult<T> element, InternalSelectorData internalData, DecoratedList<String> getOrder, ProbabilityData data) {
-        return getNamedErrorMessageOrEmpty("getLazyResultWithExternalMessage: ", (
+        return getNamedErrorMessageOrEmpty("getLazyResultWithExternalMessage", (
             getLazyParameterErrorMessage(element, nameof) +
             getInternalSelectorDataMessage(internalData) +
             CoreFormatter.getListNotEnoughMessage(getOrder, "GetOrder list", 1) +
@@ -113,7 +113,7 @@ public interface FrameworkCoreFormatter {
             message += getLazyResultWithExternalMessage(nameof, data.element, data.internalData, data.getOrder, data.probabilityData);
         }
 
-        return getNamedErrorMessageOrEmpty("getLazyResultWithOptionsMessage: ", message);
+        return getNamedErrorMessageOrEmpty("getLazyResultWithOptionsMessage", message);
     }
 
     static String getElementsAmountMessage(String locator, boolean status, int expectedSize, int size) {
@@ -131,7 +131,7 @@ public interface FrameworkCoreFormatter {
             message += CoreFormatter.isNullMessageWithName(locatorGetter.apply(locator), "Actual locator from locator");
         }
 
-        return getNamedErrorMessageOrEmpty("isNotNullLazyDataMessage: ", message);
+        return getNamedErrorMessageOrEmpty("isNotNullLazyDataMessage", message);
     }
 
     static <T> String isInvalidLazyLocatorMessage(LazyLocator locator, Function<LazyLocator, T> locatorGetter) {
@@ -151,7 +151,7 @@ public interface FrameworkCoreFormatter {
             message += CoreFormatter.isNullMessageWithName(locatorGetter.apply(locator), "Actual locator from locator");
         }
 
-        return getNamedErrorMessageOrEmpty("isInvalidLazyLocatorMessage: ", message);
+        return getNamedErrorMessageOrEmpty("isInvalidLazyLocatorMessage", message);
     }
 
     static String getUniqueGeneratedName(String name, AtomicInteger count) {
@@ -191,7 +191,7 @@ public interface FrameworkCoreFormatter {
             }
         }
 
-        return getNamedErrorMessageOrEmpty("getInvalidGetByFilterFormatterDataMessage: ", message);
+        return getNamedErrorMessageOrEmpty("getInvalidGetByFilterFormatterDataMessage", message);
     }
 
     static <T> String getByFilterMessage(GetByFilterFormatterData<T> data) {
