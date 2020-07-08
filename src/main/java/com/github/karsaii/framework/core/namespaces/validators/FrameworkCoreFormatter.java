@@ -24,6 +24,7 @@ import static com.github.karsaii.core.namespaces.validators.CoreFormatter.getNam
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isBlankMessageWithName;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isLessThanExpected;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isMoreThanExpected;
+import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isMoreThanExpectedMessage;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessage;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessageWithName;
 import static com.github.karsaii.core.namespaces.validators.DataValidators.isInvalidOrFalseMessage;
@@ -178,17 +179,12 @@ public interface FrameworkCoreFormatter {
         var message = isNullMessageWithName(data, "Get By filter data");
         if (isBlank(message)) {
             message += (
+                isMoreThanExpectedMessage(data.listSize, -1, "List size") +
                 isBlankMessageWithName(data.filterName, "Filter name") +
                 isBlankMessageWithName(data.message, "Message") +
                 isNullMessageWithName(data.filter, "Filter") +
                 isNullMessage(data.status)
             );
-
-            final var listSize = data.listSize;
-            final var sizeData = isLessThanExpected(listSize, -1, "List size");
-            if (!sizeData.status) {
-                message += "List size wasn't more than -1 - size(\"" + listSize + "\")" + CoreFormatterConstants.END_LINE;
-            }
         }
 
         return getNamedErrorMessageOrEmpty("getInvalidGetByFilterFormatterDataMessage", message);
