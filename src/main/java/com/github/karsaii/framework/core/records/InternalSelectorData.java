@@ -1,6 +1,5 @@
 package com.github.karsaii.framework.core.records;
 
-import com.github.karsaii.core.constants.CommandRangeDataConstants;
 import com.github.karsaii.core.records.command.CommandRangeData;
 
 import java.util.Objects;
@@ -12,14 +11,6 @@ public class InternalSelectorData {
     public InternalSelectorData(CommandRangeData range, int limit) {
         this.range = range;
         this.limit = limit;
-    }
-
-    public InternalSelectorData(int limit) {
-        this(CommandRangeDataConstants.DEFAULT_RANGE, limit);
-    }
-
-    public InternalSelectorData() {
-        this(1);
     }
 
     @Override
