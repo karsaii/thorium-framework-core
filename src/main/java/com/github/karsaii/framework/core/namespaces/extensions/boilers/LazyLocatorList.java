@@ -11,14 +11,14 @@ public class LazyLocatorList extends DecoratedList<LazyLocator> {
     }
 
     public LazyLocatorList subList(int fromIndex, int toIndex) {
-        return subList(LazyLocatorList.class, fromIndex, toIndex);
+        return new LazyLocatorList(super.subList(fromIndex, toIndex));
     }
 
     public LazyLocatorList tail() {
-        return tail(LazyLocatorList.class);
+        return new LazyLocatorList(super.tail());
     }
 
     public LazyLocatorList initials() {
-        return initials(LazyLocatorList.class);
+        return new LazyLocatorList(super.initials());
     }
 }
