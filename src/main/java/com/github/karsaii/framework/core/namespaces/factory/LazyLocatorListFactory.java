@@ -4,7 +4,7 @@ import com.github.karsaii.framework.core.namespaces.extensions.boilers.LazyLocat
 import com.github.karsaii.framework.core.records.lazy.LazyLocator;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public interface LazyLocatorListFactory {
@@ -12,11 +12,15 @@ public interface LazyLocatorListFactory {
         return new LazyLocatorList(list);
     }
 
+    static LazyLocatorList getWith(LazyLocator... locators) {
+        return getWith(Arrays.asList(locators));
+    }
+
     static LazyLocatorList getWithEmptyList() {
         return getWith(new ArrayList<>());
     }
 
     static LazyLocatorList getWithSingleItem(LazyLocator locator) {
-        return new LazyLocatorList(Collections.singletonList(locator));
+        return new LazyLocatorList(List.of(locator));
     }
 }

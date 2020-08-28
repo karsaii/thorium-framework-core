@@ -5,13 +5,7 @@ import com.github.karsaii.framework.core.records.lazy.LazyElementParameters;
 
 import java.util.Objects;
 
-public abstract class AbstractLazyFilteredElementParameters<
-    DependencyType,
-    GetterType,
-    FilterMetaType,
-    ResultListType,
-    ResultType
-> extends LazyElementParameters {
+public abstract class AbstractLazyFilteredElementParameters<DependencyType, GetterType, FilterMetaType, ResultListType, ResultType> extends LazyElementParameters {
     public final BaseFilterData<DependencyType, GetterType, ?, FilterMetaType, ResultListType, ResultType> elementFilterData;
     public final Class clazz;
 
@@ -25,7 +19,6 @@ public abstract class AbstractLazyFilteredElementParameters<
         super(probability, lazyLocators, getter);
         this.elementFilterData = elementFilterData;
         this.clazz = clazz;
-        //this.clazz = data.isFiltered ? WebElement.class : WebElementList.class;
     }
 
     @Override
