@@ -13,11 +13,10 @@
         <java.version>11</java.version>
         <!--Dependency Versions-->
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
         <eclipse-collections.version>10.2.0</eclipse-collections.version>
         <commons.io.version>2.6</commons.io.version>
         <selector.specificity.version>5798ba8625c9d00c29392d4ea89bd9056d7d23e6</selector.specificity.version>
-        <thorium-core.version>ab116985d4882192c49a48ce5d79745ff15629bb</thorium-core.version>
+        <thorium-core.version>65e596b56bf481e2ab297d78c4418d8e699babb5</thorium-core.version>
         <jackson.version>2.11.0</jackson.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
     </properties>
@@ -77,6 +76,16 @@
             <groupId>org.eclipse.collections</groupId>
             <artifactId>eclipse-collections</artifactId>
             <version>${eclipse-collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.8.0-beta2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.8.0-beta2</version>
         </dependency>
     </dependencies>
     <profiles>
