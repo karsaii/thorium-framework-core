@@ -16,6 +16,7 @@ import com.github.karsaii.framework.core.records.lazy.ExternalSelectorData;
 import com.github.karsaii.framework.core.records.lazy.LazyLocator;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -75,17 +76,23 @@ public interface FrameworkCoreFormatter {
         );
     }
 
+    static <T> String isNullLazyElementParametersMessage(String name, Map<String, T> parameters, Predicate<T> validator) {
+        var message = (
+            CoreFormatter.isBlankMessageWithName(name, "Element name") +
+            CoreFormatter.isNullMessageWithName(parameters, "Element parameters") +
+            CoreFormatter.isNullMessageWithName(validator, "Element validator")
+        );
+        if (isBlank(message)) {
+            message += CoreFormatter.areInvalidParametersMessage(parameters.values(), validator);
+        }
+
+        return getNamedErrorMessageOrEmpty("isNullLazyElementParametersMessage", message);
+    }
+
     static <T> String isNullLazyElementMessage(AbstractLazyResult<T> object) {
         var message = CoreFormatter.isNullMessageWithName(object, "Lazy Element");
         if (isBlank(message)) {
-            final var parameters = object.parameters;
-            message += (
-                CoreFormatter.isBlankMessageWithName(object.name, CoreFormatterConstants.ELEMENT + " name") +
-                CoreFormatter.isNullMessageWithName(parameters, FrameworkCoreFormatterConstants.ELEMENT_PARAMETERS)
-            );
-            if (isBlank(message)) {
-                message += CoreFormatter.areInvalidParametersMessage(parameters.values(), object.validator);
-            }
+            message += isNullLazyElementParametersMessage(object.name, object.parameters, object.validator);
         }
 
         return getNamedErrorMessageOrEmpty("isNullLazyElementMessage", message);
