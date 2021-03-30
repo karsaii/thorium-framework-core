@@ -32,7 +32,7 @@ public interface FrameworkFunctions {
 
         final var size = sizable.object.size();
         final var status = condition.test(size);
-        return DataFactoryFunctions.getWithNameAndMessage(size, status, nameof, messageHandler.apply(status, size, elementName));
+        return DataFactoryFunctions.getWith(size, status, nameof, messageHandler.apply(status, size, elementName));
     }
 
     static <T extends ISizable> Data<Integer> getCountOfElements(Data<T> data, String elementName) {
