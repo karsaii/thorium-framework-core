@@ -24,10 +24,10 @@ public interface FrameworkFunctions {
         Predicate<Integer> condition,
         String elementName
     ) {
-        final var lNameof = isNotBlank(nameof) ? nameof : "getAmount";
+        final var localNameof = isNotBlank(nameof) ? nameof : "getAmount";
         final var errorMessage = FrameworkCoreFormatter.getAmountParameterErrorMessage(sizable, messageHandler, condition);
         if (isNotBlank(errorMessage)) {
-            return replaceName(CoreDataConstants.NULL_INTEGER, lNameof);
+            return replaceName(CoreDataConstants.NULL_INTEGER, localNameof);
         }
 
         final var size = sizable.object.size();

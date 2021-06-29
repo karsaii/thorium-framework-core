@@ -11,8 +11,8 @@ public interface LazyLocatorValidators {
         var message = CoreFormatter.isNullMessageWithName(data, "Lazy Locator data");
         if (isBlank(message)) {
             message += (
-                CoreFormatter.isBlankMessageWithName(data.locator, "Lazy Locator locator value") +
-                CoreFormatter.isBlankMessageWithName(data.strategy, "Lazy Locator strategy value")
+                CoreFormatter.isBlankMessageWithName(data.LOCATOR, "Lazy Locator locator value") +
+                CoreFormatter.isBlankMessageWithName(data.STRATEGY, "Lazy Locator strategy value")
             );
         }
 
@@ -22,7 +22,7 @@ public interface LazyLocatorValidators {
     static String isInvalidLazyLocator(LazyLocator data) {
         var message = isInvalidLazyLocatorCommon(data);
         if (isBlank(message)) {
-            message += CoreFormatter.isBlankMessageWithName(data.strategy, "Lazy Locator strategy value");
+            message += CoreFormatter.isBlankMessageWithName(data.STRATEGY, "Lazy Locator strategy value");
         }
 
         return getNamedErrorMessageOrEmpty("isInvalidLazyLocator", message);
