@@ -8,14 +8,12 @@ import com.github.karsaii.core.namespaces.validators.CoreFormatter;
 import com.github.karsaii.core.records.Data;
 import com.github.karsaii.framework.core.abstracts.AbstractLazyResult;
 import com.github.karsaii.framework.core.abstracts.AbstractLazyElementWithOptionsData;
-import com.github.karsaii.framework.core.constants.FrameworkCoreFormatterConstants;
 import com.github.karsaii.framework.core.records.GetByFilterFormatterData;
 import com.github.karsaii.framework.core.records.InternalSelectorData;
 import com.github.karsaii.framework.core.records.ProbabilityData;
 import com.github.karsaii.framework.core.records.lazy.ExternalSelectorData;
 import com.github.karsaii.framework.core.records.lazy.LazyLocator;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
@@ -23,14 +21,11 @@ import java.util.function.Predicate;
 
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.getNamedErrorMessageOrEmpty;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isBlankMessageWithName;
-import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isLessThanExpected;
-import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isMoreThanExpected;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isMoreThanExpectedMessage;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessage;
 import static com.github.karsaii.core.namespaces.validators.CoreFormatter.isNullMessageWithName;
 import static com.github.karsaii.core.namespaces.validators.DataValidators.isInvalidOrFalseMessage;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 public interface FrameworkCoreFormatter {
     static String getCountOfTypeMessage(boolean status, int value, String type) {
@@ -150,8 +145,8 @@ public interface FrameworkCoreFormatter {
         );
         if (isBlank(message)) {
             message += (
-                CoreFormatter.isNullMessageWithName(locator.locator, parameterName + " value") +
-                CoreFormatter.isNullMessageWithName(locator.strategy, parameterName + " strategy")
+                CoreFormatter.isNullMessageWithName(locator.LOCATOR, parameterName + " value") +
+                CoreFormatter.isNullMessageWithName(locator.STRATEGY, parameterName + " strategy")
             );
         }
 

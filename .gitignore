@@ -198,4 +198,13 @@ target/**
 ./allure-results/**.*
 ./allure-results/**/**
 
+allure-results
+allure-results/
+allure-results/*
+allure-results/**
+allure-results/**/
+allure-results/**.*
+allure-results/**/**
+
 # Allures end
+
