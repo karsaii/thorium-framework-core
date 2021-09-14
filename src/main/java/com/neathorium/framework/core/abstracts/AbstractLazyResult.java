@@ -20,7 +20,7 @@ public abstract class AbstractLazyResult<T>  {
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
         
@@ -30,9 +30,9 @@ public abstract class AbstractLazyResult<T>  {
 
         final var that = (AbstractLazyResult<?>) o;
         return (
-            CoreUtilities.isEqual(name, that.name) &&
-            CoreUtilities.isEqual(parameters, that.parameters) &&
-            CoreUtilities.isEqual(validator, that.validator)
+            Objects.equals(name, that.name) &&
+            Objects.equals(parameters, that.parameters) &&
+            Objects.equals(validator, that.validator)
         );
     }
 
