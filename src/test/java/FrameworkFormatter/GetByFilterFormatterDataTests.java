@@ -1,7 +1,7 @@
 package FrameworkFormatter;
 
-import com.github.karsaii.framework.core.namespaces.validators.FrameworkCoreFormatter;
-import com.github.karsaii.framework.core.records.GetByFilterFormatterData;
+import com.neathorium.framework.core.namespaces.validators.FrameworkCoreFormatter;
+import com.neathorium.framework.core.records.GetByFilterFormatterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
