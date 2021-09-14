@@ -1,8 +1,8 @@
 package InternalSelectorData;
 
-import com.github.karsaii.core.constants.CommandRangeDataConstants;
-import com.github.karsaii.core.records.command.CommandRangeData;
-import com.github.karsaii.framework.core.namespaces.factory.InternalSelectorDataFactory;
+import com.neathorium.framework.core.namespaces.factory.InternalSelectorDataFactory;
+import com.neathorium.core.constants.CommandRangeDataConstants;
+import com.neathorium.core.records.command.CommandRangeData;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
