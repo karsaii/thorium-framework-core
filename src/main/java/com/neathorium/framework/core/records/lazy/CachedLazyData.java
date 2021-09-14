@@ -3,7 +3,6 @@ package com.neathorium.framework.core.records.lazy;
 import com.neathorium.framework.core.abstracts.AbstractLazyResult;
 import com.neathorium.framework.core.selector.records.SelectorKeySpecificityData;
 import com.neathorium.core.extensions.DecoratedList;
-import com.neathorium.core.extensions.namespaces.CoreUtilities;
 import com.neathorium.core.extensions.namespaces.NullableFunctions;
 
 import java.util.Map;
@@ -20,18 +19,18 @@ public class CachedLazyData<T, U extends AbstractLazyResult<T>> {
 
     @Override
     public boolean equals(Object o) {
-        if (CoreUtilities.isEqual(this, o)) {
+        if (this == o) {
             return true;
         }
 
-        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+        if (NullableFunctions.isNull(o) || (getClass() != o.getClass())) {
             return false;
         }
 
         final var that = (CachedLazyData<?, ?>) o;
         return (
-            CoreUtilities.isEqual(element, that.element) &&
-            CoreUtilities.isEqual(typeKeys, that.typeKeys)
+            Objects.equals(element, that.element) &&
+            Objects.equals(typeKeys, that.typeKeys)
         );
     }
 

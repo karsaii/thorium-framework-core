@@ -1,5 +1,8 @@
 package com.neathorium.framework.core.abstracts;
 
+import com.neathorium.core.extensions.namespaces.CoreUtilities;
+import com.neathorium.core.extensions.namespaces.NullableFunctions;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -17,10 +20,20 @@ public abstract class AbstractLazyResult<T>  {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (CoreUtilities.isEqual(this, o)) {
+            return true;
+        }
+        
+        if (NullableFunctions.isNull(o) || CoreUtilities.isNotEqual(getClass(), o.getClass())) {
+            return false;
+        }
+
         final var that = (AbstractLazyResult<?>) o;
-        return Objects.equals(name, that.name) && Objects.equals(parameters, that.parameters) && Objects.equals(validator, that.validator);
+        return (
+            CoreUtilities.isEqual(name, that.name) &&
+            CoreUtilities.isEqual(parameters, that.parameters) &&
+            CoreUtilities.isEqual(validator, that.validator)
+        );
     }
 
     @Override
